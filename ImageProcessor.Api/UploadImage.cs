@@ -1,16 +1,14 @@
-using System;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ImageProcessor.Common;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using MongoDB.Driver;
-using Newtonsoft.Json.Linq;
 
 namespace ImageProcessor.Api
 {
@@ -40,7 +38,7 @@ namespace ImageProcessor.Api
             var collection = database.GetCollection<Image>("images");
             await collection.InsertOneAsync(newImage);
 
-            var imageName = newImage.Id.ToString();
+            var imageName = newImage._Id.ToString();
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
             CloudBlobClient client = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = client.GetContainerReference("images");

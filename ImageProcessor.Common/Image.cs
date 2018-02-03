@@ -1,31 +1,19 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ImageProcessor.Api
+namespace ImageProcessor.Common
 {
     public class Image
     {
-        [BsonId, JsonIgnore]
+        [BsonId]
         public ObjectId _Id { get; set; }
 
         [JsonProperty("id")]
         public string Id
         {
             get { return _Id.ToString(); }
-            set
-            {
-                ObjectId parsedValue;
-                if (ObjectId.TryParse(value, out parsedValue))
-                    _Id = parsedValue;
-                else
-                    _Id = ObjectId.Empty;
-            }
+            set { _Id = ObjectId.Parse(value); }
         }
 
         [JsonProperty("name")]
