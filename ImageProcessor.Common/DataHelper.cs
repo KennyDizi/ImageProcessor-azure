@@ -39,7 +39,7 @@ namespace ImageProcessor.Common
             var database = mongoClient.GetDatabase("imageProcessor");
             var collection = database.GetCollection<Image>("images");
 
-            var filter = new FilterDefinitionBuilder<Image>().Eq((x) => x.Id, id);
+            var filter = new FilterDefinitionBuilder<Image>().Eq((x) => x._Id, ObjectId.Parse(id));
             return await collection.Find(filter).FirstOrDefaultAsync();
         }
 
@@ -49,9 +49,9 @@ namespace ImageProcessor.Common
             var mongoClient = new MongoClient(settings);
             var database = mongoClient.GetDatabase("imageProcessor");
             var collection = database.GetCollection<Image>("images");
-            var filter = new FilterDefinitionBuilder<Image>().Eq((x) => x.Id, id);
+            var filter = new FilterDefinitionBuilder<Image>().Eq((x) => x._Id, ObjectId.Parse(id));
 
-            return (await collection.ReplaceOneAsync<Image>((x) => x.Id == id, updatedImage)).IsAcknowledged;
+            return (await collection.ReplaceOneAsync<Image>((x) => x._Id == ObjectId.Parse(id), updatedImage)).IsAcknowledged;
         }
     }
 }

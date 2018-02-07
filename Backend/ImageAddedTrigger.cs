@@ -19,6 +19,7 @@ namespace Backend
         [FunctionName("ImageAddedTrigger")]
         public static async Task Run([BlobTrigger("images/{name}", Connection = "StorageConnectionString")]Stream imageStream, string name, TraceWriter log)
         {
+            log.Info(string.Format("Target Id: {0}", name));
             IVisionServiceClient client = new VisionServiceClient(VisionApiKey, VisionApiUrl);
             var features = new VisualFeature[] {
                 VisualFeature.Adult,
@@ -29,11 +30,17 @@ namespace Backend
             };
 
             var result = await client.AnalyzeImageAsync(imageStream, features);
+            log.Info("Analysis Complete");
+
             var image = await DataHelper.GetImage(name);
+            log.Info(string.Format("Image is null: {0}", image == null));
+            log.Info(string.Format("Image Id: {0}", image.Id));
 
             if (image != null)
             {
                 image.Adult = new AdultData(result.Adult.AdultScore, result.Adult.IsAdultContent, result.Adult.IsRacyContent, result.Adult.RacyScore);
+                log.Info(string.Format("Adult Score: {0}", image.Adult.AdultScore));
+
                 image.Categories = result.Categories.Select((x) => new CategoryData(x.Name, x.Score)).ToList();
                 image.Color = new ColorData(result.Color.AccentColor, result.Color.DominantColorBackground, result.Color.DominantColorForeground, result.Color.IsBWImg);
                 image.TypeData = new TypeData(result.ImageType.ClipArtType.ToString(), result.ImageType.LineDrawingType.ToString());
@@ -42,6 +49,10 @@ namespace Backend
                 if (!(await DataHelper.UpdateImage(image.Id, image)))
                 {
                     log.Error(string.Format("Failed to Analyze Image: {0}", name));
+                }
+                else
+                {
+                    log.Info("Update Complete");
                 }
             }
         }
