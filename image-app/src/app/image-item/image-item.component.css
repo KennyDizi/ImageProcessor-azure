@@ -1,0 +1,32 @@
+
+.rowContainer {
+    display: flex;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+
+    align-items: center;
+}
+
+    .rowContainer img {
+        max-height: 150px;
+        flex-grow: 0;
+    }
+
+    .rowContainer h4 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #66778c;
+        display: block;
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .rowContainer .details {
+        flex-grow: 1;
+        font-size: 0.75em;
+    }
+
+    .rowContainer .status {
+        margin-left: 10px;
+        margin-right: 20px;
+        flex-grow: 0;
+    }

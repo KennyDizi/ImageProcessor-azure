@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Image } from '../image';
+import { ImageItemComponent } from '../image-item/image-item.component';
 
 @Component({
   selector: 'image-list',

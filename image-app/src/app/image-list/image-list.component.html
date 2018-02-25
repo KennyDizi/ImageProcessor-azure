@@ -1,5 +1,7 @@
 <h2>Images</h2>
-<ul *ngIf="images.length > 0">
-  <li *ngFor="let image of images">{{image.name}}</li>
-</ul>
+<div class="imageListContainer" *ngIf="images.length > 0">
+  <div *ngFor="let image of images"
+      image-item [image]="image">
+  </div>
+</div>
 <h4 *ngIf="images.length === 0">No Images</h4>
