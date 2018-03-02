@@ -19,7 +19,7 @@ import { ImageDetailsComponent } from './image-details/image-details.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

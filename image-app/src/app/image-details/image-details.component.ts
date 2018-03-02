@@ -4,6 +4,7 @@ import { CategoriesData } from '../categories-data';
 import { ColorData } from '../color-data';
 import { TagData } from '../tag-data';
 import { TypeData } from '../type-data';
+import { capitalize, map } from 'lodash';
 
 @Component({
   selector: 'image-details',
@@ -14,12 +15,15 @@ export class ImageDetailsComponent implements OnInit {
   @Input() adult: AdultData;
   @Input() categories: CategoriesData;
   @Input() color: ColorData;
-  @Input() tagData: TagData;
+  @Input() tagData: TagData[];
   @Input() typeData: TypeData;
 
   constructor() { }
 
   ngOnInit() {
+    this.tagData = map(this.tagData, (tag) => {
+      return new TagData(capitalize(tag.name.toString()), tag.confidence);
+    });
   }
 
 }
