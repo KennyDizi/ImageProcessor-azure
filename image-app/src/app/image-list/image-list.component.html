@@ -1,7 +1,7 @@
 <h2>Images</h2>
-<div class="imageListContainer" *ngIf="images.length > 0">
-  <div *ngFor="let image of images"
+<div class="imageListContainer" *ngIf="images$.length > 0">
+  <div *ngFor="let image of (images$ | async)"
       image-item [image]="image">
   </div>
 </div>
-<h4 *ngIf="images.length === 0">No Images</h4>
+<h4 *ngIf="images$.length === 0">No Images</h4>
