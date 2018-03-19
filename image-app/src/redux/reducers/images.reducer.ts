@@ -8,11 +8,11 @@ export interface State {
     images: Image[]
 };
 
-export const initialState: State = {
+const initialState: State = {
     images: []
 }
 
-export function imagesReducer(state = initialState, action: imageActions.Actions): State {
+export const imagesReducer: ActionReducer<State> = (state = initialState, action: Action) => {
     switch (action.type) {
         case imageActions.LOAD_IMAGES_COMPLETE:
             state = Object.assign({}, state, {
@@ -23,5 +23,4 @@ export function imagesReducer(state = initialState, action: imageActions.Actions
     return state;
 }
 
-export const getImagesState = (state: State) => state;
-export const getLoadedImages = createSelector(getImagesState, (imageState: State) => imageState.images);
+export const getAllImages = (state: State) => state.images;

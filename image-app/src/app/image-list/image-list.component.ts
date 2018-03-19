@@ -5,7 +5,7 @@ import { ImageService } from '../image.service';
 import { Image } from '../image';
 import { ImageItemComponent } from '../image-item/image-item.component';
 
-import * as imageReducer from '../../redux/reducers/images.reducer';
+import { State as ImagesState, getAllImages } from '../../redux/reducers/images.reducer';
 
 @Component({
   selector: 'image-list',
@@ -13,11 +13,19 @@ import * as imageReducer from '../../redux/reducers/images.reducer';
   styleUrls: ['./image-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImageListComponent {
+export class ImageListComponent implements OnInit {
   images$: Observable<Image[]>;
 
-  constructor(private store: Store<imageReducer.State>) {
-    this.images$ = store.select(imageReducer.getLoadedImages);
-  }
+  constructor(private store: Store<ImagesState>) { }
 
+  ngOnInit() {
+    this.images$ = this.store.select((x) => x.images);
+    this.images$.subscribe(x => console.log('output', x));
+
+    /* this.images$ = combineLatest(
+      this.store.select('images'),
+      (imagesReducer: imageReducer.State) => {
+        return imagesReducer.images;
+      }); */
+  }
 }

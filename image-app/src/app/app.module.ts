@@ -26,7 +26,7 @@ import { imagesReducer } from '../redux/reducers/images.reducer';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.provideStore({ images: imagesReducer }),
+    StoreModule.provideStore(imagesReducer),
     EffectsModule.run(ImageEffects)
   ],
   providers: [ImageService],
