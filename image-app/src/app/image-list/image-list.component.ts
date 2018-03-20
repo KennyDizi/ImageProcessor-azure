@@ -1,10 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { ImageService } from '../image.service';
 import { Image } from '../image';
 import { ImageItemComponent } from '../image-item/image-item.component';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { State as ImagesState, getAllImages } from '../../redux/reducers/images.reducer';
 
 @Component({
@@ -15,17 +16,15 @@ import { State as ImagesState, getAllImages } from '../../redux/reducers/images.
 })
 export class ImageListComponent implements OnInit {
   images$: Observable<Image[]>;
+  @ViewChild('modal') private modal;
 
-  constructor(private store: Store<ImagesState>) { }
+  constructor(private store: Store<ImagesState>, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.images$ = this.store.select((x) => x.images);
-    this.images$.subscribe(x => console.log('output', x));
+  }
 
-    /* this.images$ = combineLatest(
-      this.store.select('images'),
-      (imagesReducer: imageReducer.State) => {
-        return imagesReducer.images;
-      }); */
+  openModal() {
+    this.modalService.open(ImageUploadComponent);
   }
 }
