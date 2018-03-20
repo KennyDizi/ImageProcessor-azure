@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { ImageService } from '../image.service';
@@ -16,15 +16,15 @@ import { State as ImagesState, getAllImages } from '../../redux/reducers/images.
 })
 export class ImageListComponent implements OnInit {
   images$: Observable<Image[]>;
-  @ViewChild('modal') private modal;
 
   constructor(private store: Store<ImagesState>, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.images$ = this.store.select((x) => x.images);
+    this.modalService.open(ImageUploadComponent, { size: 'lg' });
   }
 
   openModal() {
-    this.modalService.open(ImageUploadComponent);
+    // this.modalService.open(ImageUploadComponent);
   }
 }

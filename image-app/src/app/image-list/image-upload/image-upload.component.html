@@ -1,3 +1,13 @@
-<p>
-  image-upload works!
-</p>
+<div class="modal-inside">
+  <div class="modal-header">
+    <h4>Upload a file</h4>
+  </div>
+  <div class="modal-body">
+      <input type="file" />
+      <span class="fas fa-circle-notch fa-spin fa-2x grayColor" *ngIf="isBusy"></span>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="uploadClick()">Upload</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Close</button>
+  </div>
+</div>

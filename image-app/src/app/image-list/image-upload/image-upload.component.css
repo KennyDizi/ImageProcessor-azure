@@ -1,0 +1,12 @@
+.modal-inside {
+    padding: 5px;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+}
+
+.grayColor {
+    color: #aaaaaa;
+}
