@@ -21,10 +21,9 @@ export class ImageListComponent implements OnInit {
 
   ngOnInit() {
     this.images$ = this.store.select((x) => x.images);
-    this.modalService.open(ImageUploadComponent, { size: 'lg' });
   }
 
   openModal() {
-    // this.modalService.open(ImageUploadComponent);
+    this.modalService.open(ImageUploadComponent, { size: 'lg' });
   }
 }

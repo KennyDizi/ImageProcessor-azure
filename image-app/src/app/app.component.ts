@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as imageReducer from '../redux/reducers/images.reducer';
-import * as bookActions from '../redux/actions/image.actions';
+import * as imageActions from '../redux/actions/image.actions';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<imageReducer.State>) { }
 
   ngOnInit() {
-    this.store.dispatch(new bookActions.LoadImagesAction());
+    this.store.dispatch(new imageActions.LoadImagesAction());
   }
 }
