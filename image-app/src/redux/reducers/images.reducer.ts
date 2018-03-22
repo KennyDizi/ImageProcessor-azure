@@ -13,11 +13,22 @@ const initialState: State = {
 }
 
 export const imagesReducer: ActionReducer<State> = (state = initialState, action: Action) => {
+    debugger;
     switch (action.type) {
         case imageActions.LOAD_IMAGES_COMPLETE:
             state = Object.assign({}, state, {
                 images: action.payload
             });
+            break;
+
+        case imageActions.UPLOAD_IMAGE_SUCCESS:
+            state = Object.assign({}, state, {
+                images: [
+                    action.payload,
+                    ...state.images
+                ]
+            });
+            break;
     }
 
     return state;

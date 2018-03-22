@@ -18,7 +18,9 @@ export class ImageDetailsComponent implements OnInit {
   @Input() tagData: TagData[];
   @Input() typeData: TypeData;
 
-  constructor() { }
+  constructor() {
+    this.adult = new AdultData();
+  }
 
   ngOnInit() {
     this.tagData = map(this.tagData, (tag) => {
