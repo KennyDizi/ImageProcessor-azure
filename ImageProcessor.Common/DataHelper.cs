@@ -11,7 +11,7 @@ namespace ImageProcessor.Common
     {
         static string MongoConnectionString = "mongodb://imagesdb:IOR9Ix6lqwiVI8pwZCEvZqqbdPU3TODoBs9oIwEmdfElVBiQwi1w35LZt4n7g4mn1CMa3AWcGqKi7cBkMZMXOA==@imagesdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
 
-        public static async Task<string> CreateImageRecord(Image image)
+        public static async Task<Image> CreateImageRecord(Image image)
         {
             var settings = MongoClientSettings.FromUrl(new MongoUrl(MongoConnectionString));
             var mongoClient = new MongoClient(settings);
@@ -19,7 +19,7 @@ namespace ImageProcessor.Common
             var collection = database.GetCollection<Image>("images");
             await collection.InsertOneAsync(image);
 
-            return image.Id;
+            return image;
         }
 
         public static async Task<IList<Image>> GetAllImages()

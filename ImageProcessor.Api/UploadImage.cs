@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 namespace ImageProcessor.Api
 {
@@ -28,11 +29,11 @@ namespace ImageProcessor.Api
                 Status = ImageStatus.Processing
             };
 
-            var imageName = await DataHelper.CreateImageRecord(newImage);
-            if (!(await StorageHelper.SaveToBlobStorage(imageName, fileData)))
+            var image = await DataHelper.CreateImageRecord(newImage);
+            if (!(await StorageHelper.SaveToBlobStorage(image.Id, fileData)))
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             
-            return new HttpResponseMessage(HttpStatusCode.Created) { Content = new StringContent(imageName) };
+            return new HttpResponseMessage(HttpStatusCode.Created) { Content = new StringContent(JsonConvert.SerializeObject(image)) };
         }
     }
 }
