@@ -5,7 +5,7 @@ import { Image } from '../../app/image';
 import * as imageActions  from '../actions/image.actions';
 
 export interface State {
-    images: Image[]
+    images: Image[],
 };
 
 const initialState: State = {
@@ -13,7 +13,6 @@ const initialState: State = {
 }
 
 export const imagesReducer: ActionReducer<State> = (state = initialState, action: Action) => {
-    debugger;
     switch (action.type) {
         case imageActions.LOAD_IMAGES_COMPLETE:
             state = Object.assign({}, state, {

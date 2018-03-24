@@ -11,8 +11,6 @@ import * as imageActions from '../../../redux/actions/image.actions';
   styleUrls: ['./image-upload.component.css']
 })
 export class ImageUploadComponent {
-  private isBusy: boolean = false;
-
   @ViewChild("fileUpload") fileUpload: any;
 
   constructor(private activeModalService: NgbActiveModal,
@@ -22,15 +20,8 @@ export class ImageUploadComponent {
     const fileList: FileList = this.fileUpload.nativeElement.files;
     if (fileList.length > 0) {
       this.store.dispatch(new imageActions.UploadImageAction(fileList[0]));
-
-      /* const file: File = fileList[0];
-      const formData: FormData = new FormData();
-      const headers = new Headers();
-      headers.append('Content-Type', 'multipart/form-data');
-      headers.append('Accept', 'application/json');
-
-      const options = new RequestOptions({ headers: headers }); */
     }
+    this.activeModalService.close();
   }
 
   closeModal() {

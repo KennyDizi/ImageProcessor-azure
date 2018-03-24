@@ -7,6 +7,7 @@ import { ImageItemComponent } from '../image-item/image-item.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { State as ImagesState, getAllImages } from '../../redux/reducers/images.reducer';
+import * as imageActions from '../../redux/actions/image.actions';
 
 @Component({
   selector: 'image-list',
@@ -21,7 +22,10 @@ export class ImageListComponent implements OnInit {
 
   ngOnInit() {
     this.images$ = this.store.select((x) => x.images);
-    // this.modalService.open(ImageUploadComponent, { size: 'lg' });
+  }
+
+  refresh() {
+    this.store.dispatch(new imageActions.LoadImagesAction());
   }
 
   openModal() {

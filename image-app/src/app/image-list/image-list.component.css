@@ -10,3 +10,7 @@
     .titleContainer .blue {
         color: #0000cc;
     }
+
+    .titleContainer a {
+        margin-left: 15px;
+    }
