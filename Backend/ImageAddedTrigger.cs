@@ -45,6 +45,7 @@ namespace Backend
                 image.Color = new ColorData(result.Color.AccentColor, result.Color.DominantColorBackground, result.Color.DominantColorForeground, result.Color.IsBWImg);
                 image.TypeData = new TypeData(result.ImageType.ClipArtType.ToString(), result.ImageType.LineDrawingType.ToString());
                 image.TagData = result.Tags.Select((x) => new TagData(x.Confidence, x.Name)).ToList();
+                image.Status = ImageStatus.Complete;
 
                 if (!(await DataHelper.UpdateImage(image.Id, image)))
                 {
