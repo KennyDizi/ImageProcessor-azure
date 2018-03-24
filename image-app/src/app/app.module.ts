@@ -32,8 +32,8 @@ import { imagesReducer } from '../redux/reducers/images.reducer';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.provideStore(imagesReducer),
-    EffectsModule.run(ImageEffects),
+    StoreModule.forRoot({ imagesTable: imagesReducer }),
+    EffectsModule.forRoot([ ImageEffects ]),
     NgbModule.forRoot()
   ],
   providers: [ImageService],

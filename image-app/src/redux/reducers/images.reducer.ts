@@ -12,18 +12,20 @@ const initialState: State = {
     images: []
 }
 
-export function imagesReducer(state: State = initialState, action: Action) {
+export function imagesReducer(state: State = initialState, action: Action): any {
     switch (action.type) {
         case imageActions.LOAD_IMAGES_COMPLETE:
+            const loadCompleteAction = action as imageActions.LoadImagesSuccessAction;
             state = Object.assign({}, state, {
-                images: action.payload
+                images: loadCompleteAction.payload
             });
             break;
 
         case imageActions.UPLOAD_IMAGE_SUCCESS:
+            const uploadCompleteAction = action as imageActions.UploadImageSucessAction;
             state = Object.assign({}, state, {
                 images: [
-                    action.payload,
+                    uploadCompleteAction.payload,
                     ...state.images
                 ]
             });

@@ -9,6 +9,8 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { State as ImagesState, getAllImages } from '../../redux/reducers/images.reducer';
 import * as imageActions from '../../redux/actions/image.actions';
 
+import { GlobalState } from '../../redux/GlobalState';
+
 @Component({
   selector: 'image-list',
   templateUrl: './image-list.component.html',
@@ -18,10 +20,10 @@ import * as imageActions from '../../redux/actions/image.actions';
 export class ImageListComponent implements OnInit {
   images$: Observable<Image[]>;
 
-  constructor(private store: Store<ImagesState>, private modalService: NgbModal) { }
+  constructor(private store: Store<GlobalState>, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.images$ = this.store.select((x) => x.images);
+    this.images$ = this.store.select((x) => x.imagesTable.images);
   }
 
   refresh() {

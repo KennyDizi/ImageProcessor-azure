@@ -29,7 +29,9 @@ export class ImageEffects {
     @Effect()
     uploadFile$: Observable<Action> = this.action$.ofType(imageActions.UPLOAD_IMAGE)
         .switchMap((action) => {
-            return this.imageService.uploadFile(action.payload)
+            const uploadAction = action as imageActions.UploadImageAction;
+
+            return this.imageService.uploadFile(uploadAction.payload)
                 .map(((image: Image) => new imageActions.UploadImageSucessAction(image)))
                 .catch(error => Observable.of(new imageActions.UploadImageErrorAction(error)));
         });

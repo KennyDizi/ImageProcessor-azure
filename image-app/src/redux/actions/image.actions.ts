@@ -12,7 +12,7 @@ export class LoadImagesAction implements Action {
 
 export class LoadImagesSuccessAction implements Action {
     readonly type = LOAD_IMAGES_COMPLETE;
-    constructor(public payload: Image[]) {}
+    constructor(public payload: Image[]) { }
 }
 
 export class LoadImagesErrorAction implements Action {
