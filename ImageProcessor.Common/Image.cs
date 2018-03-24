@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ImageProcessor.Common
@@ -46,6 +47,9 @@ namespace ImageProcessor.Common
         {
             get { return string.Format("https://imagestore12345.blob.core.windows.net/images/{0}", Id); }
         }
+
+        [JsonIgnore]
+        public DateTime AddedOn { get; set; }
     }
 
     public class AdultData

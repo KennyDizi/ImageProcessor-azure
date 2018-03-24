@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,7 +27,8 @@ namespace ImageProcessor.Api
             {
                 FileName = fileInfo.FileName,
                 Size = fileData.LongLength,
-                Status = ImageStatus.Processing
+                Status = ImageStatus.Processing,
+                AddedOn = DateTime.UtcNow
             };
 
             var image = await DataHelper.CreateImageRecord(newImage);

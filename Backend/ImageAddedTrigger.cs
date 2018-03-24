@@ -14,7 +14,7 @@ namespace Backend
     public static class ImageAddedTrigger
     {
         static string VisionApiUrl = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0";
-        static string VisionApiKey = "8e91cc6859b6419e913383a0a2da84a0";
+        static string VisionApiKey = "de9ae6182612460a88e51dcaa21bdd77";
 
         [FunctionName("ImageAddedTrigger")]
         public static async Task Run([BlobTrigger("images/{name}", Connection = "StorageConnectionString")]Stream imageStream, string name, TraceWriter log)

@@ -17,7 +17,7 @@ namespace ImageProcessor.Api
         [FunctionName("GetAll")]
         public static async Task<IList<Image>> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "all")]HttpRequestMessage req, TraceWriter log)
         {
-            return (await DataHelper.GetAllImages()).ToList();
+            return (await DataHelper.GetAllImages()).OrderByDescending(x => x.AddedOn).ToList();
         }
     }
 }
