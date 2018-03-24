@@ -25,7 +25,7 @@ namespace ImageProcessor.Api
 
             var newImage = new Image()
             {
-                FileName = fileInfo.FileName,
+                FileName = fileInfo.Name,
                 Size = fileData.LongLength,
                 Status = ImageStatus.Processing,
                 AddedOn = DateTime.UtcNow

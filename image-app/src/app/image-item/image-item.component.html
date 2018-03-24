@@ -1,0 +1,16 @@
+<div class="rowContainer">
+  <img src="{{image.imageUrl}}" />
+  <h4>{{image.name}}</h4>
+
+  <div class="details">
+    <image-details [adult]="image.adult"
+      [categories]="image.categories"
+      [color]="image.color"
+      [typeData]="image.typeData"
+      [tagData]="image.tagData"></image-details>
+  </div>
+
+  <div class="status">
+    <image-status status="{{image.status}}"></image-status>
+  </div>
+</div>

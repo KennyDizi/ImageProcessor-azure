@@ -1,0 +1,9 @@
+<div class="titleContainer">
+    <h2>Images</h2>
+    <a href="#" (click)="refresh()"><span class="fas fa-sync-alt fa-2x blue"></span></a>
+    <a href="#" (click)="openModal()"><span class="fas fa-plus fa-2x blue"></span></a>
+</div>
+
+<div class="imageListContainer">
+  <image-item *ngFor="let image of images$ | async" [image]="image"></image-item>
+</div>

@@ -1,0 +1,8 @@
+<!-- Adult Section -->
+<b class="adult" *ngIf="adult !== null && adult.isAdultContent">Adult Content</b>
+<b class="adult" *ngIf="adult !== null && adult.isRacyContent">Racy Content</b>
+
+<!-- Tags Section -->
+<div *ngFor="let tag of tagData">
+    {{tag.name}}
+</div>

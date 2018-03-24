@@ -1,0 +1,16 @@
+.titleContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+    .titleContainer h2 {
+        flex-grow: 1;
+    }
+
+    .titleContainer .blue {
+        color: #0000cc;
+    }
+
+    .titleContainer a {
+        margin-left: 15px;
+    }
